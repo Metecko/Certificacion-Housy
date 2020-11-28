@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Housy</string>
+    <string name="cargando">Cargando...</string>
+    <string name="precio">$%d</string>
 </resources>

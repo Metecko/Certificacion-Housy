@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import cl.giorgioarlandi.hoyse.data.models.database.Mansion
+import cl.giorgioarlandi.hoyse.data.models.Mansion
 import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "detalles",

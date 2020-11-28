@@ -3,7 +3,7 @@ package cl.giorgioarlandi.hoyse.data.models.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import cl.giorgioarlandi.hoyse.data.models.database.Mansion
+import cl.giorgioarlandi.hoyse.data.models.Mansion
 import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "mansiones")
@@ -25,6 +25,9 @@ data class MansionEntity(
     val photoLink: String
 ) {
     fun toMansion(): Mansion {
-        return Mansion(id, idApi, name, price, photoLink)
+        val mansion = Mansion(idApi, name, price, photoLink)
+        mansion.idDatabase = id
+
+        return mansion
     }
 }

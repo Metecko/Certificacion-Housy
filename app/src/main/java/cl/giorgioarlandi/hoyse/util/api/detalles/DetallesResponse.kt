@@ -3,7 +3,7 @@ package cl.giorgioarlandi.hoyse.util.api.detalles
 import com.google.gson.annotations.SerializedName
 
 data class DetallesResponse(
-    @SerializedName("id") val id : Int,
+    @SerializedName("id") val id : Long,
     @SerializedName("name") val name : String,
     @SerializedName("price") val price : Int,
     @SerializedName("photo") val photo : String,

@@ -16,5 +16,6 @@ class MansionesActivity : AppCompatActivity() {
                 )
                 .commitNow()
         }
+
     }
 }
