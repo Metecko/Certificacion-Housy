@@ -7,14 +7,14 @@ import androidx.room.PrimaryKey
 import cl.giorgioarlandi.hoyse.data.models.database.Mansion
 import org.jetbrains.annotations.NotNull
 
-@Entity(tableName = "mansiones_detalle",
+@Entity(tableName = "detalles",
     foreignKeys = [
         ForeignKey(entity = MansionEntity::class,
             parentColumns = ["id"],
             childColumns = ["id_mansion"],
             onDelete = ForeignKey.CASCADE)
     ])
-data class MansionDetalleEntity(
+data class DetalleEntity(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
