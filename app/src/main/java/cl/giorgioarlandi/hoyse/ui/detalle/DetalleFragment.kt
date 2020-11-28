@@ -1,14 +1,11 @@
 package cl.giorgioarlandi.hoyse.ui.detalle
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import cl.giorgioarlandi.hoyse.R
@@ -18,7 +15,6 @@ import cl.giorgioarlandi.hoyse.data.models.PostLaunch
 import cl.giorgioarlandi.hoyse.ui.mansiones.MansionesActivity
 import cl.giorgioarlandi.hoyse.util.MansionesRepository
 import cl.giorgioarlandi.hoyse.util.mostrarAlerta
-import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.detalle_fragment.*
 import kotlinx.coroutines.Dispatchers
@@ -52,6 +48,10 @@ class DetalleFragment : Fragment() {
         })
 
         getDetalle(viewModel)
+
+        fab_correo.setOnClickListener {
+            enviarCorreo()
+        }
     }
 
     private fun getDetalle(viewModel: DetalleViewModel) {
@@ -62,7 +62,12 @@ class DetalleFragment : Fragment() {
                 }
                 is PostLaunch.Error -> {
                     post.exception.printStackTrace()
-                    mostrarAlerta(R.string.mensaje_sin_internet, R.string.titulo_sin_internet, requireContext(), MansionesActivity::class.java)
+                    mostrarAlerta(
+                        R.string.mensaje_sin_internet,
+                        R.string.titulo_sin_internet,
+                        requireContext(),
+                        MansionesActivity::class.java
+                    )
                 }
             }
         }
@@ -86,6 +91,17 @@ class DetalleFragment : Fragment() {
         }
         descripcion.text = mansion.description
         motivo.text = getString(R.string.motivo_formato, mansion.cause)
+    }
+
+    private fun enviarCorreo() {
+        val mansion = MansionesRepository.currentMansion!!
+        val emailIntent = Intent(
+            Intent.ACTION_SENDTO
+            )
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("info@housy.cl"))
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Consulta ${mansion.name} id ${mansion.idApi}")
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hola\n\nVi la propiedad ${mansion.name} y me gustaría que me contactaran a este correo o al siguiente número _________")
+        startActivity(Intent.createChooser(emailIntent, "Enviar correo.."))
     }
 
 }

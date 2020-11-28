@@ -6,6 +6,7 @@ import cl.giorgioarlandi.hoyse.R
 
 class MansionesActivity : AppCompatActivity() {
 
+    /// https://github.com/Metecko/Certificacion-Housy
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
