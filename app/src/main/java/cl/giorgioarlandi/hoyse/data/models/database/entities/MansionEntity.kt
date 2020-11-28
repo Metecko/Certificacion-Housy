@@ -25,9 +25,6 @@ data class MansionEntity(
     val photoLink: String
 ) {
     fun toMansion(): Mansion {
-        val mansion = Mansion(idApi, name, price, photoLink)
-        mansion.idDatabase = id
-
-        return mansion
+        return Mansion(idApi, name, price, photoLink, idMansion = id)
     }
 }

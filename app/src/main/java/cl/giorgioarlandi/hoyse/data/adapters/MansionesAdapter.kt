@@ -11,14 +11,18 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import cl.giorgioarlandi.hoyse.R
 import cl.giorgioarlandi.hoyse.data.models.Mansion
+import cl.giorgioarlandi.hoyse.ui.detalle.DetalleActivity
+import cl.giorgioarlandi.hoyse.util.MansionesRepository
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
-class MansionesAdapter(private val mansiones: List<Mansion>,
-                       private val context: Context
+class MansionesAdapter(
+    private val mansiones: List<Mansion>,
+    private val context: Context
 ) :
     RecyclerView.Adapter<MansionesAdapter.ViewHolder>() {
     val TAG = this.javaClass.simpleName
+
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val cardView = itemView.findViewById<CardView>(R.id.mansion_card)
         val nameView = itemView.findViewById<TextView>(R.id.mansion_name)
@@ -47,7 +51,7 @@ class MansionesAdapter(private val mansiones: List<Mansion>,
         val photo = holder.photoView
 
         name.text = context.getString(R.string.cargando)
-        Picasso.get().load(mansion.photoLink).into(photo, object: Callback {
+        Picasso.get().load(mansion.photoLink).into(photo, object : Callback {
             override fun onSuccess() {
                 name.text = mansion.name
                 price.text = context.getString(R.string.precio, mansion.price)
@@ -65,9 +69,9 @@ class MansionesAdapter(private val mansiones: List<Mansion>,
 
     private fun setOnClickListener(card: CardView, mansion: Mansion) {
         card.setOnClickListener {
-         //   Common.currentHero = hero
-         //   val intent = Intent(context, HeroActivity::class.java)
-         //   context.startActivity(intent)
+            MansionesRepository.currentMansion = mansion
+            val intent = Intent(context, DetalleActivity::class.java)
+            context.startActivity(intent)
         }
     }
 }

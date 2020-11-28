@@ -14,6 +14,10 @@ interface MansionesDAO {
     fun getMansion(idApi: Long): MansionEntity?
     @Query("SELECT * FROM mansiones")
     fun getMansiones(): List<MansionEntity>
+    @Insert
+    fun insertDetalleEntity(detalleEntity: DetalleEntity): Long
+    @Update
+    fun updateDetalleEntity(detalleEntity: DetalleEntity)
     @Query("SELECT * FROM detalles WHERE :idMansion == id_mansion")
-    fun getDetalle(idMansion: Long): DetalleEntity
+    fun getDetalle(idMansion: Long): DetalleEntity?
 }

@@ -18,7 +18,6 @@ import cl.giorgioarlandi.hoyse.util.MansionesRepository
 import kotlinx.android.synthetic.main.mansiones_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 class MansionesFragment : Fragment() {
     private val TAG = this.javaClass.simpleName
@@ -56,12 +55,13 @@ class MansionesFragment : Fragment() {
         mostrarCargando(cargando = true, vacio = false)
         var mansiones = ArrayList<Mansion>()
         lifecycleScope.launch(Dispatchers.Main) {
-            when(val resolver = mansionesRepo.getMansiones()) {
+            when(val post = mansionesRepo.getMansiones()) {
                 is PostLaunch.Success<MansionesResolver> -> {
-                    viewModel.mansiones.value = resolver.value.mansiones
-                    mansiones = resolver.value.mansiones
+                    viewModel.mansiones.value = post.value.mansiones
+                    mansiones = post.value.mansiones
                 }
-                else -> {
+                is PostLaunch.Error -> {
+                    post.exception.printStackTrace()
                     Log.e(TAG, "getMansiones: fracaso")
                 }
             }

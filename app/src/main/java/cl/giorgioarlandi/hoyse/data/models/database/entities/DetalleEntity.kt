@@ -37,14 +37,7 @@ data class DetalleEntity(
     @NotNull
     val cause: String
 ) {
-    fun toMansion(_mansion: Mansion): Mansion {
-        val mansion = _mansion.copy()
-        mansion.size = size
-        mansion.renovation = renovation
-        mansion.credit = credit
-        mansion.description = description
-        mansion.cause = cause
-
-        return mansion
+    fun toMansion(mansion: Mansion): Mansion {
+        return mansion.copy(size = size, renovation = renovation, credit = credit, description = description, cause = cause)
     }
 }

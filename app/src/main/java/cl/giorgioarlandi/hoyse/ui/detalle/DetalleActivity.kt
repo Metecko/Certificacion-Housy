@@ -1,19 +1,17 @@
-package cl.giorgioarlandi.hoyse.ui.mansiones
+package cl.giorgioarlandi.hoyse.ui.detalle
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import cl.giorgioarlandi.hoyse.R
 
-class MansionesActivity : AppCompatActivity() {
+class DetalleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.detalle_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container,
-                    MansionesFragment.newInstance()
-                )
+                .replace(R.id.container, DetalleFragment.newInstance())
                 .commitNow()
         }
     }

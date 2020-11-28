@@ -2,4 +2,16 @@
     <string name="app_name">Housy</string>
     <string name="cargando">Cargando...</string>
     <string name="precio">$%d</string>
+    <string name="entendido">Entendido</string>
+    <string name="mensaje_sin_internet">Favor consiga una conexión estable para obtener más información</string>
+    <string name="titulo_sin_internet">Sin conexión</string>
+    <string name="photo_description">Mansion PHOTO</string>
+    <string name="ficha_titulo">Ficha Técnica</string>
+    <string name="descripcion_title">Descripción</string>
+    <string name="metros_cuadrados">%d mt2</string>
+    <string name="requiere_renovacion">Requiere renovación</string>
+    <string name="no_requiere_renovacion">En buen estado</string>
+    <string name="permite_credito">Acepta crédito</string>
+    <string name="no_permite_credito">Solo efectivo</string>
+    <string name="motivo_formato">Motivo de venta: %s</string>
 </resources>
